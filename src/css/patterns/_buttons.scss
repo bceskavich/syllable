@@ -1,0 +1,27 @@
+@mixin base-button {
+  border: none;
+  font-size: 18px;
+  font-family: $font-body;
+  padding: 5px 20px;
+
+  &:focus {
+    outline: none;
+  }
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+@mixin blue-button {
+  @include base-button;
+  background-color: transparent;
+  border: 1px solid $color-brand-blue;
+  color: $color-brand-blue;
+  border-radius: 2.5px;
+
+  &:hover {
+    background-color: $color-brand-blue;
+    color: #fff;
+  }
+}

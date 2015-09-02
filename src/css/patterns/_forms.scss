@@ -1,0 +1,13 @@
+@mixin text-form {
+  border: none;
+  border-bottom: 1px solid black;
+  font-size: 15px;
+  padding: 10px 0px;
+  width: 100%;
+  font-family: $font-body;
+
+  &:focus {
+    outline: none;
+    border-bottom: 1px solid $color-brand-blue;
+  }
+}

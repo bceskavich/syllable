@@ -1,0 +1,25 @@
+.home {
+  @include vert-align;
+}
+
+.home-container {
+  @include vert-align__child;
+  width: 675px;
+  margin-top: -150px;
+  text-align: left;
+}
+
+.home__title {
+  font-family: $font-header;
+  font-size: 75px;
+  border-bottom: 2px solid #006aab;
+  padding-bottom: 15px;
+}
+
+.home__subtitle {
+  font-size: 30px;
+  font-weight: 200;
+  font-style: italic;
+  line-height: 1.5;
+  color: #333;
+}
