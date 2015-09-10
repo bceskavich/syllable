@@ -9,9 +9,14 @@ import WebpackDevServer from 'webpack-dev-server';
 import WebpackDevConfig from './config/webpack.development';
 // import { schema } from './data/schema';
 
+// First, parse the app schema
+import parseGraphQLSchema from './build/parseGraphQLSchema';
+parseGraphQLSchema();
+
 const APP_PORT = config.get('server.port');
 const GRAPHQL_PORT = config.get('graphQLServer.port');
 const WEBPACK_PORT = config.get('webpackServer.port');
+
 
 /*
 // A) GraphQL Server

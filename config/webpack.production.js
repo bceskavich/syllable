@@ -14,7 +14,8 @@ module.exports = merge(baseConfig, {
     loaders: [
       {
         test: /\.js$/,
-        loaders: ['babel-loader?stage=0'],
+        loader: 'babel-loader',
+        query: {stage: 0, plugins: ['./build/babelRelayPlugin']},
         exclude: [/node_modules/, /config/]
       },
       {

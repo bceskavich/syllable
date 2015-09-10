@@ -1,0 +1,37 @@
+interface Node {
+  id: ID!
+}
+
+type PageInfo {
+  hasNextPage: Boolean!
+  hasPreviousPage: Boolean!
+  startCursor: String
+  endCursor: String
+}
+
+type Query {
+  node(id: ID!): Node
+  viewer: User
+}
+
+type Syllabus implements Node {
+  id: ID!
+  title: String
+  description: String
+}
+
+type SyllabusConnection {
+  pageInfo: PageInfo!
+  edges: [SyllabusEdge]
+}
+
+type SyllabusEdge {
+  node: Syllabus
+  cursor: String!
+}
+
+type User implements Node {
+  id: ID!
+  name: String
+  syllabi(before: String, after: String, first: Int, last: Int): SyllabusConnection
+}

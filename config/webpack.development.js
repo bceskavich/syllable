@@ -19,7 +19,13 @@ module.exports = merge(baseConfig, {
     loaders: [
       {
         test: /\.js$/,
-        loaders: ['react-hot', 'babel-loader?stage=0'],
+        loader: 'react-hot',
+        exclude: [/node_modules/, /config/]
+      },
+      {
+        test: /\.js$/,
+        loader: 'babel-loader',
+        query: {stage: 0, plugins: ['./build/babelRelayPlugin']},
         exclude: [/node_modules/, /config/]
       },
       {
