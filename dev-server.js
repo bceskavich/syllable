@@ -1,42 +1,51 @@
-"use strict";
+import config from 'config';
+import express from 'express';
+import graphQlHTTP from 'express-graphql';
+import proxy from 'proxy-middleware';
+import request from 'request';
+import url from 'url';
+import webpack from 'webpack';
+import WebpackDevServer from 'webpack-dev-server';
+import WebpackDevConfig from './config/webpack.development';
+// import { schema } from './data/schema';
 
-var config        = require('config');
-var express       = require('express');
-var proxy         = require('proxy-middleware');
-var request       = require('request');
-var url           = require('url');
-var webpack       = require('webpack');
-var WebpackServer = require('webpack-dev-server');
-var WebpackConfig = require('./config/webpack.development.js');
-var app           = express();
+const APP_PORT = config.get('server.port');
+const GRAPHQL_PORT = config.get('graphQLServer.port');
+const WEBPACK_PORT = config.get('webpackServer.port');
 
-var PORT     = config.get('devServer.port');
-var WP_PORT  = config.get('webpackServer.port');
+/*
+// A) GraphQL Server
+let graphQLServer = express();
+graphQLServer.use('/', graphQlHTTP({schema, pretty: true}));
+graphQLServer.listen(GRAPHQL_PORT, () => console.log(
+  `GraphQL Server is alive on port: ${GRAPHQL_PORT}`
+));
+*/
 
-app.use('/assets', proxy(url.parse('http://localhost:' + WP_PORT + '/assets')));
-app.use('/*', function(req, res) {
-  request.get('http://localhost:' + WP_PORT + '/assets/index.html').pipe(res);
+// B) App server
+let app = express();
+app.use('/assets', proxy(url.parse(`http://localhost:${WEBPACK_PORT}/assets`)));
+app.use('/', (req, res) => {
+  request.get(`http://localhost:${WEBPACK_PORT}/assets/index.html`).pipe(res);
 });
 
-var devServer = new WebpackServer(webpack(WebpackConfig), {
+app.listen(APP_PORT, () => {
+  console.log('It\'s alive! On port ...\n');
+  console.log(`----------\n|  ${APP_PORT}  |\n----------\n       || \n(\\__/) || \n(•ㅅ•) || \n/ 　 づ`);
+});
+
+// C) Webpack
+let devServer = new WebpackDevServer(webpack(WebpackDevConfig), {
   hot: true,
   historyApiFallback: true,
   quiet: false,
   noInfo: false,
-  publicPath: "http://localhost:" + WP_PORT + "/assets/",
+  publicPath: `http://localhost:${WEBPACK_PORT}/assets`,
   stats: {
     colors: true
   }
 });
 
-devServer.listen(WP_PORT, function(err) {
-  if (err) {
-    console.log(err);
-  }
-  console.log("I'll be watching you ... on port " + WP_PORT);
-});
-
-app.listen(PORT, function() {
-  console.log("It's alive! On port ...\n");
-  console.log("----------\n|  " + PORT + "  |\n----------\n       || \n(\\__/) || \n(•ㅅ•) || \n/ 　 づ");
-});
+devServer.listen(WEBPACK_PORT, () => console.log(
+  `I'll be watching you, on port: ${WEBPACK_PORT}`
+));

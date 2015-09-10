@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { RouteHandler } from 'react-router';
 import merge from 'lodash/object/merge';
 import connectToStores from 'alt/utils/connectToStores';
 import AppStore from './stores/AppStore';
@@ -19,7 +18,7 @@ export default class App extends Component {
   render() {
     return (
       <div className='body'>
-        <RouteHandler {...this.props} />
+        {this.props.children}
       </div>
     );
   }
