@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import Editor from 'react-medium-editor';
 import ManageSyllabusActions from '../../actions/ManageSyllabusActions';
 import mediumEditorOptions from '../../utils/mediumEditorOptions';
+import SyllabusItemControls from './SyllabusItemControls';
 
 export default class SyllabusItem extends Component {
 
@@ -11,11 +12,17 @@ export default class SyllabusItem extends Component {
   }
 
   render() {
-    const { text } = this.props;
+    const { text, id } = this.props;
 
     return (
-      <div>
+      <div className='manage-syllabus-item'>
+        <SyllabusItemControls
+          id={id}
+          onRemove={this.onRemove.bind(this)}
+        />
+
         <Editor
+          className='manage-syllabus-item__input'
           text={text}
           onChange={this.onEditorChange.bind(this)}
           options={mediumEditorOptions}

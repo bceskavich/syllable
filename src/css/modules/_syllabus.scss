@@ -1,0 +1,48 @@
+.manage-syllabus {
+  @include syllabus-wrapper;
+}
+
+.manage-syllabus-item {
+  position: relative;
+  border: 1px solid transparent;
+  border-radius: 2.5px;
+  padding: 20px 15px;
+}
+
+.manage-syllabus-item:hover {
+  border: 1px solid $color-brand-light-blue;
+
+  .manage-syllabus-item__controls {
+    display: block;
+  }
+}
+
+.manage-syllabus-item__controls {
+  @include inline-list;
+  display: none;
+  position: absolute;
+  right: 0;
+  top: 0;
+
+  li {
+    border-top: 0px;
+    border-right: 1px;
+    border-bottom: 1px;
+    border-left: 0px;
+    border-style: solid;
+    border-color: $color-brand-light-blue;
+    padding: 2.5px 10px;
+  }
+
+  li:first-child {
+    border-left: 1px solid $color-brand-light-blue;
+  }
+
+  li:last-child {
+    border-right: 0px;
+  }
+}
+
+.manage-syllabus-item__input:focus {
+  outline: none;
+}

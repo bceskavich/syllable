@@ -24,7 +24,7 @@ export default class CreateSyllabusPage extends Component {
     const { syllabusItems } = this.props;
 
     return (
-      <div>
+      <div className='manage-syllabus'>
         {
           syllabusItems.map((item, index) => {
             return (
@@ -36,7 +36,6 @@ export default class CreateSyllabusPage extends Component {
             );
           })
         }
-        <button onClick={ManageSyllabusActions.addSyllabusItem}>Add Item</button>
       </div>
     );
   }

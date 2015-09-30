@@ -11,11 +11,11 @@ class ManageSyllabusStore {
     this.syllabusItems = [
       {
         id: getItemId(),
-        text: 'Syllabus content goes here',
+        text: '<p>Syllabus content goes here</p>',
       },
       {
         id: getItemId(),
-        text: 'Another syllabus module',
+        text: '<p>Another syllabus module</p>',
       },
     ];
   }
