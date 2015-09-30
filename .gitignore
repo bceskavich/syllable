@@ -6,4 +6,7 @@ node_modules
 bower_components
 build
 
+# DB - Until I figure this out
+lib
+
 *.DS_Store
