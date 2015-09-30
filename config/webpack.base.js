@@ -1,7 +1,7 @@
-var path              = require('path');
-var config            = require('config');
-var webpack           = require('webpack');
-var HtmlWebpackPlugin = require('html-webpack-plugin');
+var path                = require('path');
+var config              = require('config');
+var webpack             = require('webpack');
+var HtmlWebpackPlugin   = require('html-webpack-plugin');
 
 var configPlugin = new webpack.DefinePlugin({
   GA_CODE:    JSON.stringify(config.get('analytics.ga')),

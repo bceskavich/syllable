@@ -7,7 +7,7 @@ import url from 'url';
 import webpack from 'webpack';
 import WebpackDevServer from 'webpack-dev-server';
 import WebpackDevConfig from './config/webpack.development';
-// import { schema } from './data/schema';
+import { schema } from './lib/schema';
 
 // First, parse the app schema
 import parseGraphQLSchema from './build/parseGraphQLSchema';
@@ -16,7 +16,6 @@ parseGraphQLSchema();
 const APP_PORT = config.get('server.port');
 const GRAPHQL_PORT = config.get('graphQLServer.port');
 const WEBPACK_PORT = config.get('webpackServer.port');
-
 
 /*
 // A) GraphQL Server
@@ -35,8 +34,8 @@ app.use('/', (req, res) => {
 });
 
 app.listen(APP_PORT, () => {
-  console.log('It\'s alive! On port ...\n');
-  console.log(`----------\n|  ${APP_PORT}  |\n----------\n       || \n(\\__/) || \n(•ㅅ•) || \n/ 　 づ`);
+  console.log('\nIt\'s alive! On port ...\n');
+  console.log(`----------\n|  ${APP_PORT}  |\n----------\n       || \n(\\__/) || \n(•ㅅ•) || \n/ 　 づ\n\n`);
 });
 
 // C) Webpack
@@ -52,5 +51,5 @@ let devServer = new WebpackDevServer(webpack(WebpackDevConfig), {
 });
 
 devServer.listen(WEBPACK_PORT, () => console.log(
-  `I'll be watching you, on port: ${WEBPACK_PORT}`
+  `I'll be watching you, on port: ${WEBPACK_PORT}\n\n`
 ));

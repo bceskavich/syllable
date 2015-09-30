@@ -3,6 +3,7 @@
 
 # Dependency & builds
 node_modules
+bower_components
 build
 
 *.DS_Store

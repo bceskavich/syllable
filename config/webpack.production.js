@@ -15,15 +15,16 @@ module.exports = merge(baseConfig, {
       {
         test: /\.js$/,
         loader: 'babel-loader',
-        query: {stage: 0, plugins: ['./build/babelRelayPlugin']},
+        query: {
+          stage: 0
+        },
         exclude: [/node_modules/, /config/]
       },
       {
-        test: /\.scss$/,
+        test: /\.?css$/,
         loader: ExtractTextPlugin.extract(
           'css!autoprefixer?browsers=last 3 versions!sass?outputStyle=compressed&includePaths[]=' + path.resolve(patterns.includePaths[0])
-        ),
-        exclude: /node_modules/
+        )
       }
     ]
   },
