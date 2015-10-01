@@ -20,8 +20,12 @@ class ManageSyllabusStore {
     ];
   }
 
+  getSyllabusItemIndex(id) {
+    return findIndex(this.syllabusItems, item => item.id === id);
+  }
+
   onUpdateSyllabusItem(payload) {
-    const i = findIndex(this.syllabusItems, item => item.id === payload.id);
+    const i = this.getSyllabusItemIndex(payload.id);
     this.syllabusItems[i].text = payload.text;
   }
 
@@ -36,6 +40,24 @@ class ManageSyllabusStore {
     pullAt(this.syllabusItems, findIndex(this.syllabusItems, item => {
       return item.id === id;
     }));
+  }
+
+  onMoveItemUp(id) {
+    const i = this.getSyllabusItemIndex(id);
+    if (i) {
+      const temp = this.syllabusItems[i];
+      this.syllabusItems[i] = this.syllabusItems[i-1];
+      this.syllabusItems[i-1] = temp;
+    }
+  }
+
+  onMoveItemDown(id) {
+    const i = this.getSyllabusItemIndex(id);
+    if (i < this.syllabusItems.length - 1) {
+      const temp = this.syllabusItems[i];
+      this.syllabusItems[i] = this.syllabusItems[i+1];
+      this.syllabusItems[i+1] = temp;
+    }
   }
 }
 

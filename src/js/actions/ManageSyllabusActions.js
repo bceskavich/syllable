@@ -5,7 +5,9 @@ class ManageSyllabusActions {
     this.generateActions(
       'updateSyllabusItem',
       'addSyllabusItem',
-      'removeSyllabusItem'
+      'removeSyllabusItem',
+      'moveItemUp',
+      'moveItemDown'
     );
   }
 }

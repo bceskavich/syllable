@@ -19,8 +19,9 @@ export default class SyllabusItem extends Component {
         <SyllabusItemControls
           id={id}
           onRemove={this.onRemove.bind(this)}
+          moveDown={this.moveDown.bind(this)}
+          moveUp={this.moveUp.bind(this)}
         />
-
         <Editor
           className='manage-syllabus-item__input'
           text={text}
@@ -39,5 +40,15 @@ export default class SyllabusItem extends Component {
   onRemove() {
     const { id } = this.props;
     ManageSyllabusActions.removeSyllabusItem(id);
+  }
+
+  moveDown() {
+    const { id } = this.props;
+    ManageSyllabusActions.moveItemDown(id);
+  }
+
+  moveUp() {
+    const { id } = this.props;
+    ManageSyllabusActions.moveItemUp(id);
   }
 }
