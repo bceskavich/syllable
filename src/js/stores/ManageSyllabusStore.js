@@ -8,6 +8,11 @@ class ManageSyllabusStore {
   constructor() {
     this.bindActions(ManageSyllabusActions);
 
+    this.syllabusTitle = {
+      title: '',
+      school: '',
+      semester: '',
+    };
     this.syllabusItems = [
       {
         id: getItemId(),
@@ -22,6 +27,10 @@ class ManageSyllabusStore {
 
   getSyllabusItemIndex(id) {
     return findIndex(this.syllabusItems, item => item.id === id);
+  }
+
+  onUpdateSyllabusTitle(payload) {
+    this.syllabusTitle[payload.key] = payload.value;
   }
 
   onUpdateSyllabusItem(payload) {

@@ -9,46 +9,37 @@ export default class SyllabusItem extends Component {
   static propTypes = {
     id: PropTypes.string.isRequired,
     text: PropTypes.string.isRequired,
+    onEditorChange: PropTypes.func.isRequired,
+    onRemove: PropTypes.func.isRequired,
+    onMoveDown: PropTypes.func.isRequired,
+    onMoveUp: PropTypes.func.isRequired,
   }
 
   render() {
-    const { text, id } = this.props;
+    const {
+      text,
+      id,
+      onEditorChange,
+      onRemove,
+      onMoveDown,
+      onMoveUp
+    } = this.props;
 
     return (
       <div className='manage-syllabus-item'>
         <SyllabusItemControls
           id={id}
-          onRemove={this.onRemove.bind(this)}
-          moveDown={this.moveDown.bind(this)}
-          moveUp={this.moveUp.bind(this)}
+          onRemove={onRemove}
+          moveDown={onMoveDown}
+          moveUp={onMoveUp}
         />
         <Editor
           className='manage-syllabus-item__input'
           text={text}
-          onChange={this.onEditorChange.bind(this)}
+          onChange={onEditorChange}
           options={mediumEditorOptions}
         />
       </div>
     );
-  }
-
-  onEditorChange(text) {
-    const { id } = this.props;
-    ManageSyllabusActions.updateSyllabusItem({ id, text, });
-  }
-
-  onRemove() {
-    const { id } = this.props;
-    ManageSyllabusActions.removeSyllabusItem(id);
-  }
-
-  moveDown() {
-    const { id } = this.props;
-    ManageSyllabusActions.moveItemDown(id);
-  }
-
-  moveUp() {
-    const { id } = this.props;
-    ManageSyllabusActions.moveItemUp(id);
   }
 }

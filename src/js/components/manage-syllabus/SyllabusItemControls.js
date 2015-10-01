@@ -3,7 +3,6 @@ import React, { Component, PropTypes } from 'react';
 export default class SyllabusItemControls extends Component {
 
   static propTypes = {
-    id: PropTypes.string.isRequired,
     onRemove: PropTypes.func.isRequired,
     moveUp: PropTypes.func.isRequired,
     moveDown: PropTypes.func.isRequired,

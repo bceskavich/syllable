@@ -59,3 +59,22 @@
 .manage-syllabus-item__input:focus {
   outline: none;
 }
+
+.manage-syllabus-item__title,
+.manage-syllabus-item__sub-title {
+  font-size: 30px;
+  width: 100%;
+  font-family: $font-header;
+  display: block;
+  margin: 15px 0px;
+  border: none;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.manage-syllabus-item__sub-title {
+  font-size: 25px;
+  font-style: italic;
+}

@@ -4,6 +4,7 @@ class ManageSyllabusActions {
   constructor() {
     this.generateActions(
       'updateSyllabusItem',
+      'updateSyllabusTitle',
       'removeSyllabusItem',
       'moveItemUp',
       'moveItemDown',
