@@ -11,11 +11,11 @@ class ManageSyllabusStore {
     this.syllabusItems = [
       {
         id: getItemId(),
-        text: '<p>Syllabus content goes here</p>',
+        text: '<p>Add your content here</p>',
       },
       {
         id: getItemId(),
-        text: '<p>Another syllabus module</p>',
+        text: '<p>Add your content here</p>',
       },
     ];
   }
@@ -29,10 +29,19 @@ class ManageSyllabusStore {
     this.syllabusItems[i].text = payload.text;
   }
 
-  onAddSyllabusItem() {
-    this.syllabusItems.push({
+  onAddItemAbove(id) {
+    const i = this.getSyllabusItemIndex(id);
+    this.syllabusItems.splice(i, 0, {
       id: getItemId(),
-      text: '',
+      text: '<p>Add your content here</p>',
+    });
+  }
+
+  onAddItemBelow(id) {
+    const i = this.getSyllabusItemIndex(id);
+    this.syllabusItems.splice(i + 1, 0, {
+      id: getItemId(),
+      text: '<p>Add your content here</p>'
     });
   }
 

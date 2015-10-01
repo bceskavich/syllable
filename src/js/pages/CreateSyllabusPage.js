@@ -3,6 +3,7 @@ import connectToStores from 'alt/utils/connectToStores';
 import ManageSyllabusStore from '../stores/ManageSyllabusStore';
 import ManageSyllabusActions from '../actions/ManageSyllabusActions';
 import SyllabusItem from '../components/manage-syllabus/SyllabusItem';
+import AddItemComponent from '../components/manage-syllabus/AddItemComponent';
 
 @connectToStores
 export default class CreateSyllabusPage extends Component {
@@ -28,15 +29,30 @@ export default class CreateSyllabusPage extends Component {
         {
           syllabusItems.map((item, index) => {
             return (
-              <SyllabusItem
-                key={index}
-                id={item.id}
-                text={item.text}
-              />
+              <span key={index}>
+                <AddItemComponent
+                  addItem={this.addItemAbove.bind(this, item.id)}
+                />
+                <SyllabusItem
+                  id={item.id}
+                  text={item.text}
+                />
+                <AddItemComponent
+                  addItem={this.addItemBelow.bind(this, item.id)}
+                />
+              </span>
             );
           })
         }
       </div>
     );
+  }
+
+  addItemAbove(id) {
+    ManageSyllabusActions.addItemAbove(id);
+  }
+
+  addItemBelow(id) {
+    ManageSyllabusActions.addItemBelow(id);
   }
 }

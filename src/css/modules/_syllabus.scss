@@ -2,6 +2,18 @@
   @include syllabus-wrapper;
 }
 
+.manage-syllabus__add {
+  // border: 1px solid black;
+  padding: 10px 0px;
+  text-align: center;
+  color: $color-brand-blue;
+  font-size: 20px;
+
+  i {
+    cursor: pointer;
+  }
+}
+
 .manage-syllabus-item {
   position: relative;
   border: 1px solid transparent;
